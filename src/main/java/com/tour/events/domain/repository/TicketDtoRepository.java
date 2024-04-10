@@ -3,10 +3,11 @@ package com.tour.events.domain.repository;
 import java.util.List;
 import java.util.Optional;
 
-public interface TicketDtoRepository {
-    //List<TicketDto> getAll();
-    //Optional<TicketDto> getById(long idTicketDto);
+import com.tour.events.domain.dto.TicketDto;
 
-    //void deleteByID(long idTicketDto);
-    //TicketDto save(TicketDto ticketDto);
+public interface TicketDtoRepository {
+    List<TicketDto> getAll();
+    Optional<TicketDto> getById(Integer idTicketDto);
+
+    TicketDto save(TicketDto ticketDto);
 }

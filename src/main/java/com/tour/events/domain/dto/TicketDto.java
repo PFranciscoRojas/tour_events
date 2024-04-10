@@ -1,38 +1,20 @@
-package com.tour.events.infraestructure.entities;
+package com.tour.events.domain.dto;
+
+import com.tour.events.infraestructure.entities.Event;
 
 import java.text.DateFormat;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+public class TicketDto {
 
-
-@Entity
-@Table(name = "ticket")
-public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Boolean status;
     private String type;
     private Float price;
     private Integer number;
     private Boolean presale;
-    @Column(name = "created_at")
     private DateFormat createdAt;
-    @Column(name = "updated_at")
     private DateFormat updatedAt;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_event")
     private Event event;
-
-    // Getters y setters
 
     public int getId() {
         return id;
@@ -42,7 +24,7 @@ public class Ticket {
         this.id = id;
     }
 
-    public boolean getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
@@ -105,5 +87,4 @@ public class Ticket {
     public void setEvent(Event event) {
         this.event = event;
     }
-
 }
