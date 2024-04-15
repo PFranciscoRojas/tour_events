@@ -16,18 +16,10 @@ public interface EventMapper {
     @Mappings({
             @Mapping(source = "id",  target = "idDto"),
             @Mapping(source = "name",  target = "nameDto"),
-//            @Mapping(source = "description",  target = "description"),
             @Mapping(source = "location",  target = "locationDto"),
             @Mapping(source = "start",  target = "startDto"),
             @Mapping(source = "finish",  target = "finishDto"),
-//            @Mapping(source = "ageRestriction",  target = "ageRestriction"),
-//            @Mapping(source = "capacity",  target = "capacity"),
             @Mapping(source = "availability", target = "availabilityDto")
-//            @Mapping(source = "type",  target = "type"),
-//            @Mapping(source = "city",  target = "city"),
-//            @Mapping(source = "address",  target = "address"),
-//            @Mapping(source = "createdAt",  target = "createdAt"),
-//            @Mapping(source = "updatedAt",  target = "updatedAt"),
     })
     EventDto toEventDto(Event event);
 
@@ -37,6 +29,14 @@ public interface EventMapper {
         return event.map(this::toEventDto);
     }
     @InheritInverseConfiguration
+    @Mapping(target = "description",ignore = true)
+    @Mapping(target = "ageRestriction",ignore = true)
+    @Mapping(target = "capacity",ignore = true)
+    @Mapping(target = "type",ignore = true)
+    @Mapping(target = "city",ignore = true)
+    @Mapping(target = "address",ignore = true)
+    @Mapping(target = "createdAt",ignore = true)
+    @Mapping(target = "updatedAt",ignore = true)
     Event toEvent(EventDto eventDto);
 
 }

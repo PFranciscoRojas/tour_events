@@ -1,18 +1,8 @@
 package com.tour.events.infraestructure.entities;
 
 import java.text.DateFormat;
-import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ticket")
@@ -30,7 +20,7 @@ public class Ticket {
     @Column(name = "updated_at")
     private DateFormat updatedAt;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_event")
+    @JoinColumn(name = "id_event", nullable = false)
     private Event event;
 
     // Getters y setters

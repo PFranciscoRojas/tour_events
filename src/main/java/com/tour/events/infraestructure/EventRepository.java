@@ -27,8 +27,8 @@ public class EventRepository implements EventDtoRepository {
     }
 
     @Override
-    public Optional<EventDto> getById(long idEventDto) {
-        Optional<Event> event = eventRepo.findById(idEventDto);
+    public Optional<EventDto> getById(Integer idEventDto) {
+        Optional<Event> event = eventRepo.findById( idEventDto);
         return eventMapper.toEventsDtoOptional(event);
     }
 
