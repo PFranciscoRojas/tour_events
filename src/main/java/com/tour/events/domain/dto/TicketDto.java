@@ -16,6 +16,8 @@ public class TicketDto {
     private DateFormat updatedAtDto;
     private Event eventDto;
 
+    private int availableQuantity;
+
     public int getId() {
         return idDto;
     }
@@ -86,5 +88,13 @@ public class TicketDto {
 
     public void setEvent(Event event) {
         this.eventDto = eventDto;
+    }
+
+    public int getAvailableQuantity() {
+        return availableQuantity;
+    }
+
+    public void setAvailableQuantity(int availableQuantity) {
+        this.availableQuantity = availableQuantity;
     }
 }

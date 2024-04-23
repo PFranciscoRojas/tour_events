@@ -1,6 +1,7 @@
 package com.tour.events.domain.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class EventDto {
 
@@ -10,6 +11,8 @@ public class EventDto {
     private Date startDto;
     private Date finishDto;
     private Integer availabilityDto;
+
+    private List<TicketDto> tickets;
 
     public int getIdDto() {
         return idDto;
@@ -57,5 +60,17 @@ public class EventDto {
 
     public void setAvailabilityDto(Integer availabilityDto) {
         this.availabilityDto = availabilityDto;
+    }
+
+    public int getTotalAvailableTickets() {
+        int totalAvailableTickets = 0;
+        for (TicketDto ticket : tickets) {
+            totalAvailableTickets += ticket.getAvailableQuantity();
+        }
+        return totalAvailableTickets;
+    }
+
+    public void setTickets(List<TicketDto> tickets) {
+        this.tickets = tickets;
     }
 }
