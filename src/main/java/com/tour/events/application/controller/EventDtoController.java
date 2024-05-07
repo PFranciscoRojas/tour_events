@@ -42,6 +42,7 @@ public class EventDtoController {
         return eventDtoService.getByName(name);
     }
 
+    @PostMapping()
     public EventSaveDto save(@RequestBody EventSaveDto eventSaveDto){
         return eventDtoService.save(eventSaveDto);
     }

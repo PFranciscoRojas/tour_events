@@ -12,89 +12,90 @@ public class TicketDto {
     private Float priceDto;
     private Integer numberDto;
     private Boolean presaleDto;
-    private DateFormat createdAtDto;
-    private DateFormat updatedAtDto;
-    private Event eventDto;
+//    private DateFormat createdAtDto;
+//    private DateFormat updatedAtDto;
+    private EventSaveDto eventSaveDto;
 
-    private int availableQuantity;
+//    private int availableQuantity;
 
-    public int getId() {
+    public int getIdDto() {
         return idDto;
     }
 
-    public void setId(int id) {
+    public void setIdDto(int idDto) {
         this.idDto = idDto;
     }
 
-    public Boolean getStatus() {
+    public Boolean getStatusDto() {
         return statusDto;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatusDto(Boolean statusDto) {
         this.statusDto = statusDto;
     }
 
-    public String getType() {
+    public String getTypeDto() {
         return typeDto;
     }
 
-    public void setType(String type) {
+    public void setTypeDto(String typeDto) {
         this.typeDto = typeDto;
     }
 
-    public Float getPrice() {
+    public Float getPriceDto() {
         return priceDto;
     }
 
-    public void setPrice(Float price) {
+    public void setPriceDto(Float priceDto) {
         this.priceDto = priceDto;
     }
 
-    public Integer getNumber() {
+    public Integer getNumberDto() {
         return numberDto;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumberDto(Integer numberDto) {
         this.numberDto = numberDto;
     }
 
-    public Boolean getPresale() {
+    public Boolean getPresaleDto() {
         return presaleDto;
     }
 
-    public void setPresale(Boolean presale) {
+    public void setPresaleDto(Boolean presaleDto) {
         this.presaleDto = presaleDto;
     }
 
-    public DateFormat getCreatedAt() {
-        return createdAtDto;
+    public EventSaveDto getEventSaveDto() {
+        return eventSaveDto;
     }
 
-    public void setCreatedAt(DateFormat createdAt) {
-        this.createdAtDto = createdAtDto;
+    public void setEventSaveDto(EventSaveDto eventSaveDto) {
+        this.eventSaveDto = eventSaveDto;
     }
 
-    public DateFormat getUpdatedAt() {
-        return updatedAtDto;
-    }
+    //    public DateFormat getCreatedAt() {
+//        return createdAtDto;
+//    }
 
-    public void setUpdatedAt(DateFormat updatedAtDto) {
-        this.updatedAtDto = updatedAtDto;
-    }
+//    public void setCreatedAt(DateFormat createdAt) {
+//        this.createdAtDto = createdAtDto;
+//    }
 
-    public Event getEvent() {
-        return eventDto;
-    }
+//    public DateFormat getUpdatedAt() {
+//        return updatedAtDto;
+//    }
 
-    public void setEvent(Event event) {
-        this.eventDto = eventDto;
-    }
-    public int getAvailableQuantity() {
-        return availableQuantity;
-    }
+//    public void setUpdatedAt(DateFormat updatedAtDto) {
+//        this.updatedAtDto = updatedAtDto;
+//    }
 
-    public void setAvailableQuantity(int availableQuantity) {
-        this.availableQuantity = availableQuantity;
-    }
+//    public int getAvailableQuantity() {
+//        return availableQuantity;
+//    }
+
+//    public void setAvailableQuantity(int availableQuantity) {
+//        this.availableQuantity = availableQuantity;
+//    }
 
 }

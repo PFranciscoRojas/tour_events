@@ -1,5 +1,6 @@
 package com.tour.events.infraestructure;
 
+import com.sun.tools.jconsole.JConsoleContext;
 import com.tour.events.domain.dto.TicketDto;
 import com.tour.events.domain.repository.TicketDtoRepository;
 import com.tour.events.infraestructure.entities.Ticket;
@@ -30,7 +31,7 @@ public class TicketRepository implements TicketDtoRepository {
     @Override
     public Optional<TicketDto> getById(Integer idTicketDto) {
        Optional<Ticket> ticket = ticketRepo.findById( idTicketDto);
-       return ticketMapper.toTicketsOptional(ticket);
+       return ticketMapper.toTicketsDtoOptional(ticket);
     }
 
     @Override

@@ -65,7 +65,7 @@ public class EventDto {
     public int getTotalAvailableTickets() {
         int totalAvailableTickets = 0;
         for (TicketDto ticket : tickets) {
-            totalAvailableTickets += ticket.getAvailableQuantity();
+            totalAvailableTickets += ticket.getNumberDto();
         }
         return totalAvailableTickets;
     }

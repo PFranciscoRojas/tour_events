@@ -1,7 +1,8 @@
 package com.tour.events.infraestructure.entities;
 
-import java.text.DateFormat;
+import java.sql.Timestamp;
 
+import com.tour.events.domain.dto.EventDto;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,12 +17,13 @@ public class Ticket {
     private Integer number;//numero de personas
     private Boolean presale;//descuento al precio
     @Column(name = "created_at")
-    private DateFormat createdAt;
+    private Timestamp createdAt;
     @Column(name = "updated_at")
-    private DateFormat updatedAt;
+    private Timestamp updatedAt;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_event", nullable = false)
     private Event event;
+
 
     // Getters y setters
 
@@ -73,19 +75,19 @@ public class Ticket {
         this.presale = presale;
     }
 
-    public DateFormat getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(DateFormat createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public DateFormat getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(DateFormat updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -95,6 +97,16 @@ public class Ticket {
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new Timestamp(System.currentTimeMillis());
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Timestamp(System.currentTimeMillis());
     }
 
 }

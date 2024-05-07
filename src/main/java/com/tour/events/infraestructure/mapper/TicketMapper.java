@@ -1,6 +1,9 @@
 package com.tour.events.infraestructure.mapper;
 
+import com.tour.events.domain.dto.EventDto;
+import com.tour.events.domain.dto.EventSaveDto;
 import com.tour.events.domain.dto.TicketDto;
+import com.tour.events.infraestructure.entities.Event;
 import com.tour.events.infraestructure.entities.Ticket;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -14,25 +17,27 @@ import java.util.Optional;
 public interface TicketMapper {
 
     @Mappings({
-            @Mapping(source = "id", target = "id"),
-            @Mapping(source = "status", target = "status"),
-            @Mapping(source = "type", target = "type"),
-            @Mapping(source = "price", target = "price"),
-            @Mapping(source = "number", target = "number"),
-            @Mapping(source = "presale", target = "presale"),
-            @Mapping(source = "createdAt", target = "createdAt"),
-            @Mapping(source = "updatedAt", target = "updatedAt")
+            @Mapping(source = "id", target = "idDto"),
+            @Mapping(source = "status", target = "statusDto"),
+            @Mapping(source = "type", target = "typeDto"),
+            @Mapping(source = "price", target = "priceDto"),
+            @Mapping(source = "number", target = "numberDto"),
+            @Mapping(source = "presale", target = "presaleDto"),
+            @Mapping(source = "event", target = "eventSaveDto"),
+//            @Mapping(source = "createdAt", target = "createdAt"),
+//            @Mapping(source = "updatedAt", target = "updatedAt")
     })
     TicketDto toTicketDto(Ticket ticket);
 
     List<TicketDto> toTickets(List<Ticket> tickets);
 
-    default Optional<TicketDto> toTicketsOptional(Optional<Ticket> ticket ){
+    default Optional<TicketDto> toTicketsDtoOptional(Optional<Ticket> ticket ){
         return  ticket.map(this::toTicketDto);
     }
 
+
     @InheritInverseConfiguration
-    @Mapping(target = "event", ignore = true)
+//    @Mapping(target = "event", ignore = true)
     Ticket toTicket(TicketDto ticketDto);
 
 }
