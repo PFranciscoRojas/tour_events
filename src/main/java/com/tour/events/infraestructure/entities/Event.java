@@ -148,8 +148,10 @@ public class Event {
         this.updatedAt = updatedAt;
     }
 
+
     @PrePersist
     protected void onCreate() {
+        availability = capacity;
         createdAt = new Timestamp(System.currentTimeMillis());
     }
 
