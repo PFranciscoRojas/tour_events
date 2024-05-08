@@ -17,11 +17,6 @@ public class EventDtoController {
     @Autowired
     private EventDtoService eventDtoService;
 
-    @GetMapping("/start")
-    public String saludar(){
-        return "Hola";
-    }
-
     @GetMapping()
     public List<EventDto> getAll(){
         return eventDtoService.getAll();

@@ -34,12 +34,6 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private List<Ticket> tickets;
 
-//    @PrePersist
-//    protected void onCreate() {
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        createdAt = dateFormat.format(new Date());
-//    }
-
     // Getters y setters
 
     public int getId() {

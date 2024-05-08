@@ -26,8 +26,6 @@ public interface EventSaveMapper {
             @Mapping(source = "type",  target = "typeDto"),
             @Mapping(source = "city",  target = "cityDto"),
             @Mapping(source = "address",  target = "addressDto"),
-//            @Mapping(source = "createdAt",  target = "createdAtDto"),
-//            @Mapping(source = "updatedAt",  target = "updatedAtDto"),
     })
     EventSaveDto toEventSaveDto(Event event);
 
@@ -37,13 +35,5 @@ public interface EventSaveMapper {
         return event.map(this::toEventSaveDto);
     }
     @InheritInverseConfiguration
-//    @Mapping(target = "description",ignore = true)
-//    @Mapping(target = "ageRestriction",ignore = true)
-//    @Mapping(target = "capacity",ignore = true)
-//    @Mapping(target = "type",ignore = true)
-//    @Mapping(target = "city",ignore = true)
-//    @Mapping(target = "address",ignore = true)
-//    @Mapping(target = "createdAt",ignore = true)
-//    @Mapping(target = "updatedAt",ignore = true)
     Event toEvent(EventSaveDto eventSaveDto);
 }

@@ -50,10 +50,6 @@ public class EventRepository implements EventDtoRepository {
     }
 
     @Override
-//    public EventDto save(EventDto eventDto) {
-//        Event event = eventMapper.toEvent(eventDto);
-//        return eventMapper.toEventDto(eventRepo.save(event));
-//    }
     public EventSaveDto save(EventSaveDto eventSaveDto) {
         Event event = eventSaveMapper.toEvent(eventSaveDto);
         return eventSaveMapper.toEventSaveDto(eventRepo.save(event));

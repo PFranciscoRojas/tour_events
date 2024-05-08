@@ -12,8 +12,6 @@ public class TicketDto {
     private Float priceDto;
     private Integer numberDto;
     private Boolean presaleDto;
-//    private DateFormat createdAtDto;
-//    private DateFormat updatedAtDto;
     private EventSaveDto eventSaveDto;
 
 //    private int availableQuantity;
@@ -74,28 +72,5 @@ public class TicketDto {
         this.eventSaveDto = eventSaveDto;
     }
 
-    //    public DateFormat getCreatedAt() {
-//        return createdAtDto;
-//    }
-
-//    public void setCreatedAt(DateFormat createdAt) {
-//        this.createdAtDto = createdAtDto;
-//    }
-
-//    public DateFormat getUpdatedAt() {
-//        return updatedAtDto;
-//    }
-
-//    public void setUpdatedAt(DateFormat updatedAtDto) {
-//        this.updatedAtDto = updatedAtDto;
-//    }
-
-//    public int getAvailableQuantity() {
-//        return availableQuantity;
-//    }
-
-//    public void setAvailableQuantity(int availableQuantity) {
-//        this.availableQuantity = availableQuantity;
-//    }
 
 }
