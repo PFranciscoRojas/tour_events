@@ -10,7 +10,7 @@ public class EventDto {
     private String locationDto;
     private Date startDto;
     private Date finishDto;
-    private Integer availabilityDto;
+    private int availabilityDto;
 
     private List<TicketDto> tickets;
 
@@ -54,24 +54,31 @@ public class EventDto {
         this.finishDto = finishDto;
     }
 
-    public Integer getAvailabilityDto() {
+    public int getAvailabilityDto() {
         return availabilityDto;
     }
 
-    public void setAvailabilityDto(Integer availabilityDto) {
+    public void setAvailabilityDto(int availabilityDto) {
         this.availabilityDto = availabilityDto;
     }
 
     public int getTotalAvailableTickets() {
-        int totalAvailableTickets = 0;
-        for (TicketDto ticket : tickets) {
-            totalAvailableTickets += ticket.getNumberDto();
-        }
-        return totalAvailableTickets;
+        return tickets.stream().mapToInt(TicketDto::getNumberDto).sum();
+    }
+
+    public void addTicket(TicketDto ticket) {
+        tickets.add(ticket);
+    }
+
+    public void removeTicket(TicketDto ticket) {
+        tickets.remove(ticket);
+    }
+
+    public List<TicketDto> getTickets() {
+        return tickets;
     }
 
     public void setTickets(List<TicketDto> tickets) {
         this.tickets = tickets;
     }
-
 }

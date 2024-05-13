@@ -3,8 +3,7 @@ package com.tour.events.application.controller;
 import com.tour.events.domain.dto.EventDto;
 import com.tour.events.domain.dto.EventSaveDto;
 import com.tour.events.domain.service.EventDtoService;
-import org.mapstruct.Mapping;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,40 +13,47 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/events")
 public class EventDtoController {
-    @Autowired
-    private EventDtoService eventDtoService;
+    private final EventDtoService eventDtoService;
 
-    @GetMapping()
-    public List<EventDto> getAll(){
+    public EventDtoController(EventDtoService eventDtoService) {
+        this.eventDtoService = eventDtoService;
+    }
+
+    @GetMapping
+    public List<EventDto> getAll() {
         return eventDtoService.getAll();
     }
 
-    @GetMapping("{id}")
-    public Optional<EventDto> getByID(@PathVariable("id") int eventDtoID){
-        return eventDtoService.getByID(eventDtoID);
+    @GetMapping("/{id}")
+    public ResponseEntity<EventDto> getByID(@PathVariable int id) {
+        Optional<EventDto> eventDto = eventDtoService.getByID(id);
+        return eventDto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/city")
-    public List<EventDto> getByCity(@RequestParam String city){
+    public List<EventDto> getByCity(@RequestParam String city) {
         return eventDtoService.getByCity(city);
     }
 
     @GetMapping("/name")
-    public List<EventDto> getByNAme(@RequestParam String name){
+    public List<EventDto> getByName(@RequestParam String name) {
         return eventDtoService.getByName(name);
     }
 
-    @PostMapping()
-    public EventSaveDto save(@RequestBody EventSaveDto eventSaveDto){
+    @PostMapping
+    public EventSaveDto save(@RequestBody EventSaveDto eventSaveDto) {
         return eventDtoService.save(eventSaveDto);
     }
+
     @GetMapping("/{id}/availability")
-    public ResponseEntity<Integer> getEventAvailability(@PathVariable("id") int eventId) {
-        int availability = eventDtoService.calculateTotalAvailableTickets(eventId);
-        if (availability >= 0) {
-            return ResponseEntity.ok(availability);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Integer> getEventAvailability(@PathVariable int id) {
+        int availability = eventDtoService.calculateTotalAvailableTickets(id);
+        return ResponseEntity.ok(availability);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EventDto> updateEvent(@PathVariable int id, @RequestBody EventSaveDto eventSaveDto) {
+        EventDto updatedEvent = eventDtoService.update(id, eventSaveDto);
+        return updatedEvent != null ? ResponseEntity.ok(updatedEvent) : ResponseEntity.notFound().build();
     }
 }

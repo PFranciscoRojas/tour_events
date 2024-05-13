@@ -9,12 +9,28 @@ public class EventSaveDto {
     private String locationDto;
     private Date startDto;
     private Date finishDto;
-    private Integer ageRestrictionDto;
-    private Integer capacityDto;
-    private Integer availabilityDto;
+    private int ageRestrictionDto;
+    private int capacityDto;
+    private int availabilityDto;
     private String typeDto;
     private String cityDto;
     private String addressDto;
+
+    public int getIdDto() {
+        return idDto;
+    }
+
+    public void setIdDto(int idDto) {
+        this.idDto = idDto;
+    }
+
+    public String getNameDto() {
+        return nameDto;
+    }
+
+    public void setNameDto(String nameDto) {
+        this.nameDto = nameDto;
+    }
 
     public String getDescriptionDto() {
         return descriptionDto;
@@ -24,20 +40,52 @@ public class EventSaveDto {
         this.descriptionDto = descriptionDto;
     }
 
-    public Integer getAgeRestrictionDto() {
+    public String getLocationDto() {
+        return locationDto;
+    }
+
+    public void setLocationDto(String locationDto) {
+        this.locationDto = locationDto;
+    }
+
+    public Date getStartDto() {
+        return startDto;
+    }
+
+    public void setStartDto(Date startDto) {
+        this.startDto = startDto;
+    }
+
+    public Date getFinishDto() {
+        return finishDto;
+    }
+
+    public void setFinishDto(Date finishDto) {
+        this.finishDto = finishDto;
+    }
+
+    public int getAgeRestrictionDto() {
         return ageRestrictionDto;
     }
 
-    public void setAgeRestrictionDto(Integer ageRestrictionDto) {
+    public void setAgeRestrictionDto(int ageRestrictionDto) {
         this.ageRestrictionDto = ageRestrictionDto;
     }
 
-    public Integer getCapacityDto() {
+    public int getCapacityDto() {
         return capacityDto;
     }
 
-    public void setCapacityDto(Integer capacityDto) {
+    public void setCapacityDto(int capacityDto) {
         this.capacityDto = capacityDto;
+    }
+
+    public int getAvailabilityDto() {
+        return availabilityDto;
+    }
+
+    public void setAvailabilityDto(int availabilityDto) {
+        this.availabilityDto = availabilityDto;
     }
 
     public String getTypeDto() {
@@ -62,42 +110,5 @@ public class EventSaveDto {
 
     public void setAddressDto(String addressDto) {
         this.addressDto = addressDto;
-    }
-
-    public int getIdDto() {
-        return idDto;
-    }
-    public void setIdDto(int idDto) {
-        this.idDto = idDto;
-    }
-    public String getNameDto() {
-        return nameDto;
-    }
-    public void setNameDto(String nameDto) {
-        this.nameDto = nameDto;
-    }
-    public String getLocationDto() {
-        return locationDto;
-    }
-    public void setLocationDto(String locationDto) {
-        this.locationDto = locationDto;
-    }
-    public Date getStartDto() {
-        return startDto;
-    }
-    public void setStartDto(Date startDto) {
-        this.startDto = startDto;
-    }
-    public Date getFinishDto() {
-        return finishDto;
-    }
-    public void setFinishDto(Date finishDto) {
-        this.finishDto = finishDto;
-    }
-    public Integer getAvailabilityDto() {
-        return availabilityDto;
-    }
-    public void setAvailabilityDto(Integer availabilityDto) {
-        this.availabilityDto = availabilityDto;
     }
 }

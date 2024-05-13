@@ -10,10 +10,16 @@ public interface EventDtoRepository {
     List<EventDto> getAll();
 //    List<EventDto> getByCity();
 
+    Optional<EventDto> getById(int id);
+
     List<EventDto> getByCity(String eventDtoCity);
     List<EventDto> getByName(String eventDtoName);
 
     Optional<EventDto> getById(Integer idEventDto);
-//    EventDto save(EventDto eventDto);
+    //    EventDto save(EventDto eventDto);
     EventSaveDto save(EventSaveDto eventSaveDto);
+
+    EventDto save(EventDto eventDto);
+
+    void delete(int id);
 }

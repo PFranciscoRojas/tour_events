@@ -2,7 +2,6 @@ package com.tour.events.application.controller;
 
 import com.tour.events.domain.dto.TicketDto;
 import com.tour.events.domain.service.TicketDtoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,21 +10,25 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/tickets")
 public class TicketDtoController {
-    @Autowired
-    private TicketDtoService ticketDtoSrv;
+    private final TicketDtoService ticketDtoService;
 
-    @GetMapping()
-    public List<TicketDto> getAll(){
-        return ticketDtoSrv.getAll();
+    public TicketDtoController(TicketDtoService ticketDtoService) {
+        this.ticketDtoService = ticketDtoService;
     }
 
-    @GetMapping("{id}")
-    public Optional<TicketDto> getByID(@PathVariable("id") Integer ticketDtoID){
-        return ticketDtoSrv.getByID(ticketDtoID);
+    @GetMapping
+    public List<TicketDto> getAll() {
+        return ticketDtoService.getAll();
     }
 
-    @PostMapping()
-    public TicketDto save(@RequestBody TicketDto ticketDto){
-        return ticketDtoSrv.save(ticketDto);
+    @GetMapping("/{id}")
+    public TicketDto getById(@PathVariable("id") Integer id) {
+        return ticketDtoService.getByID(id)
+                .orElseThrow(() -> new RuntimeException("Ticket not found with ID: " + id));
+    }
+
+    @PostMapping
+    public TicketDto save(@RequestBody TicketDto ticketDto) {
+        return ticketDtoService.save(ticketDto);
     }
 }

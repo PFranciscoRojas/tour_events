@@ -32,6 +32,11 @@ public class EventRepository implements EventDtoRepository {
     }
 
     @Override
+    public Optional<EventDto> getById(int id) {
+        return Optional.empty();
+    }
+
+    @Override
     public List<EventDto> getByCity(String eventDtoCity) {
         List<Event> eventsCity = (List<Event>) eventRepo.findByCity(eventDtoCity);
         return eventMapper.toEventsDto(eventsCity);
@@ -53,5 +58,15 @@ public class EventRepository implements EventDtoRepository {
     public EventSaveDto save(EventSaveDto eventSaveDto) {
         Event event = eventSaveMapper.toEvent(eventSaveDto);
         return eventSaveMapper.toEventSaveDto(eventRepo.save(event));
+    }
+
+    @Override
+    public EventDto save(EventDto eventDto) {
+        return null;
+    }
+
+    @Override
+    public void delete(int id) {
+
     }
 }

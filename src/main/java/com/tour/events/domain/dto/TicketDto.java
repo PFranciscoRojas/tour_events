@@ -4,6 +4,7 @@ import com.tour.events.infraestructure.entities.Event;
 
 import java.text.DateFormat;
 
+
 public class TicketDto {
 
     private int idDto;
