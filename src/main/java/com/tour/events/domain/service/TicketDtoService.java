@@ -13,15 +13,20 @@ public class TicketDtoService {
     @Autowired
     private TicketDtoRepository ticketRepo;
 
-    public List<TicketDto> getAll(){
+    public List<TicketDto> getAll() {
         return ticketRepo.getAll();
     }
 
-    public Optional<TicketDto> getByID(Integer ticketID){
+    public Optional<TicketDto> getByID(Integer ticketID) {
         return ticketRepo.getById(ticketID);
     }
 
-    public TicketDto save(TicketDto ticketDto){
+    public TicketDto save(TicketDto ticketDto) {
         return ticketRepo.save(ticketDto);
     }
+
+    public void cancelTicket(Integer ticketID) {
+        ticketRepo.cancelTicket(ticketID);
+    }
 }
+

@@ -7,7 +7,10 @@ import com.tour.events.domain.dto.TicketDto;
 
 public interface TicketDtoRepository {
     List<TicketDto> getAll();
+    
     Optional<TicketDto> getById(Integer idTicketDto);
 
     TicketDto save(TicketDto ticketDto);
+
+    void cancelTicket(Integer idTicketDto);
 }

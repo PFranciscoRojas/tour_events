@@ -28,4 +28,9 @@ public class TicketDtoController {
     public TicketDto save(@RequestBody TicketDto ticketDto){
         return ticketDtoSrv.save(ticketDto);
     }
+    
+    @PostMapping("/{id}/cancel")
+    public void cancelTicket(@PathVariable("id") Integer ticketDtoID){
+        ticketDtoSrv.cancelTicket(ticketDtoID);
+    }
 }

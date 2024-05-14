@@ -1,6 +1,5 @@
 package com.tour.events.infraestructure;
 
-import com.sun.tools.jconsole.JConsoleContext;
 import com.tour.events.domain.dto.TicketDto;
 import com.tour.events.domain.repository.TicketDtoRepository;
 import com.tour.events.infraestructure.entities.Ticket;
@@ -17,10 +16,10 @@ import org.springframework.stereotype.Repository;
 public class TicketRepository implements TicketDtoRepository {
 
     @Autowired
-    public TicketCrudRepository ticketRepo;
+    private TicketCrudRepository ticketRepo;
 
     @Autowired
-    public TicketMapper ticketMapper;
+    private TicketMapper ticketMapper;
 
     @Override
     public List<TicketDto> getAll() {
@@ -30,7 +29,7 @@ public class TicketRepository implements TicketDtoRepository {
 
     @Override
     public Optional<TicketDto> getById(Integer idTicketDto) {
-       Optional<Ticket> ticket = ticketRepo.findById( idTicketDto);
+       Optional<Ticket> ticket = ticketRepo.findById(idTicketDto);
        return ticketMapper.toTicketsDtoOptional(ticket);
     }
 
@@ -38,5 +37,17 @@ public class TicketRepository implements TicketDtoRepository {
     public TicketDto save(TicketDto ticketDto) {
        Ticket ticket = ticketMapper.toTicket(ticketDto);
        return ticketMapper.toTicketDto(ticketRepo.save(ticket));
+    }
+
+    @Override
+    public void cancelTicket(Integer idTicketDto) {
+       Optional<Ticket> ticketOptional = ticketRepo.findById(idTicketDto);
+       if (ticketOptional.isPresent()) {
+           Ticket ticket = ticketOptional.get();
+           ticket.setStatus(false); 
+           ticketRepo.save(ticket); 
+       } else {
+           throw new IllegalArgumentException("Ticket with ID " + idTicketDto + " not found");
+       }
     }
 }
