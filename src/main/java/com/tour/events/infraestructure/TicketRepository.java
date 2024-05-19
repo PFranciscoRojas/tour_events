@@ -9,6 +9,7 @@ import com.tour.events.infraestructure.repositories.TicketCrudRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,5 +39,14 @@ public class TicketRepository implements TicketDtoRepository {
     public TicketDto save(TicketDto ticketDto) {
        Ticket ticket = ticketMapper.toTicket(ticketDto);
        return ticketMapper.toTicketDto(ticketRepo.save(ticket));
+    }
+
+    @Override
+    public List<TicketDto> getByEventId(Integer eventId) {
+        List<Ticket> tickets = ticketRepo.findByEventId(eventId);
+
+        return tickets.stream()
+                .map(ticketMapper::toTicketDto)
+                .collect(Collectors.toList());
     }
 }

@@ -18,15 +18,25 @@ public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/admin/**").hasRole("ADMIN")
+//                        .anyRequest().authenticated()
+//                )
+//                .formLogin(withDefaults())
+//                .userDetailsService(userDetailsService);
+//        return http.build();
+//    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable()) // Desactiva CSRF
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
-                .formLogin(withDefaults())
-                .userDetailsService(userDetailsService);
+                        .anyRequest().permitAll() // Permite todas las solicitudes
+                );
         return http.build();
     }
 

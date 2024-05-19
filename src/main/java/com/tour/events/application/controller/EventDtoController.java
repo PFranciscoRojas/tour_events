@@ -50,4 +50,15 @@ public class EventDtoController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EventSaveDto> updateEvent(@PathVariable int id, @RequestBody EventSaveDto eventSaveDto) {
+        try {
+            eventSaveDto.setIdDto(id);  // Ensure the DTO has the correct ID
+            EventSaveDto updatedEvent = eventDtoService.updateEvent(eventSaveDto);
+            return ResponseEntity.ok(updatedEvent);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

@@ -50,4 +50,27 @@ public class EventDtoService {
         }
     }
 
+    public EventSaveDto updateEvent(EventSaveDto eventSaveDto) throws Exception {
+        Optional<EventSaveDto> optionalEvent = eventRepo.getByIdSave(eventSaveDto.getIdDto());
+
+        if (optionalEvent.isPresent()) {
+            EventSaveDto event = optionalEvent.get();
+            event.setNameDto(eventSaveDto.getNameDto());
+            event.setDescriptionDto(eventSaveDto.getDescriptionDto());
+            event.setLocationDto(eventSaveDto.getLocationDto());
+            event.setStartDto(eventSaveDto.getStartDto());
+            event.setFinishDto(eventSaveDto.getFinishDto());
+            event.setAgeRestrictionDto(eventSaveDto.getAgeRestrictionDto());
+            event.setCapacityDto(eventSaveDto.getCapacityDto());
+            event.setAvailabilityDto(eventSaveDto.getAvailabilityDto());
+            event.setTypeDto(eventSaveDto.getTypeDto());
+            event.setCityDto(eventSaveDto.getCityDto());
+            event.setAddressDto(eventSaveDto.getAddressDto());
+
+            return eventRepo.save(event);
+        } else {
+            throw new Exception("Event not found");
+        }
+    }
+
 }

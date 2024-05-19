@@ -14,6 +14,7 @@ public interface EventDtoRepository {
     List<EventDto> getByName(String eventDtoName);
 
     Optional<EventDto> getById(Integer idEventDto);
+    Optional<EventSaveDto> getByIdSave(Integer idEventDtoSave);
 //    EventDto save(EventDto eventDto);
     EventSaveDto save(EventSaveDto eventSaveDto);
 }

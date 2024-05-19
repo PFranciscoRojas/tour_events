@@ -4,9 +4,11 @@ import com.tour.events.domain.dto.EventDto;
 import com.tour.events.domain.dto.EventSaveDto;
 import com.tour.events.domain.repository.EventDtoRepository;
 import com.tour.events.infraestructure.entities.Event;
+import com.tour.events.infraestructure.entities.Ticket;
 import com.tour.events.infraestructure.mapper.EventMapper;
 import com.tour.events.infraestructure.mapper.EventSaveMapper;
 import com.tour.events.infraestructure.repositories.EventCrudRepository;
+import com.tour.events.infraestructure.repositories.TicketCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +20,9 @@ public class EventRepository implements EventDtoRepository {
 
     @Autowired
     public EventCrudRepository eventRepo;
+
+    @Autowired
+    public TicketCrudRepository ticketRepo;
 
     @Autowired
     public EventMapper eventMapper;
@@ -53,5 +58,11 @@ public class EventRepository implements EventDtoRepository {
     public EventSaveDto save(EventSaveDto eventSaveDto) {
         Event event = eventSaveMapper.toEvent(eventSaveDto);
         return eventSaveMapper.toEventSaveDto(eventRepo.save(event));
+    }
+
+    @Override
+    public Optional<EventSaveDto> getByIdSave(Integer id) {
+        Optional<Event> event = eventRepo.findById(id);
+        return event.map(eventSaveMapper::toEventSaveDto);
     }
 }

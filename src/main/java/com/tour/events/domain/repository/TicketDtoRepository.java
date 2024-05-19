@@ -10,4 +10,6 @@ public interface TicketDtoRepository {
     Optional<TicketDto> getById(Integer idTicketDto);
 
     TicketDto save(TicketDto ticketDto);
+
+    List<TicketDto> getByEventId(Integer eventId);
 }
