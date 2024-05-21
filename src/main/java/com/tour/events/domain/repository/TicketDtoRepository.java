@@ -12,4 +12,7 @@ public interface TicketDtoRepository {
     TicketDto save(TicketDto ticketDto);
 
     List<TicketDto> getByEventId(Integer eventId);
+
+    void cancelTicket(Integer idTicketDto);
 }
+

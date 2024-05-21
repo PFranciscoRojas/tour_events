@@ -49,4 +49,17 @@ public class TicketRepository implements TicketDtoRepository {
                 .map(ticketMapper::toTicketDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void cancelTicket(Integer idTicketDto) {
+        Optional<Ticket> ticketOptional = ticketRepo.findById(idTicketDto);
+        if (ticketOptional.isPresent()) {
+            Ticket ticket = ticketOptional.get();
+            ticket.setStatus(false);
+            ticket.setNumber(0);
+            ticketRepo.save(ticket);
+        } else {
+            throw new IllegalArgumentException("Ticket with ID " + idTicketDto + " not found");
+        }
+    }
 }

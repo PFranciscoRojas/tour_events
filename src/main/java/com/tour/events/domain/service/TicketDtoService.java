@@ -46,4 +46,8 @@ public class TicketDtoService {
             throw new RuntimeException("Event not found with ID: " + eventId);
         }
     }
+
+    public void cancelTicket(Integer ticketID) {
+        ticketRepo.cancelTicket(ticketID);
+    }
 }

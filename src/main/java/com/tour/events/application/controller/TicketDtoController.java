@@ -1,6 +1,8 @@
 package com.tour.events.application.controller;
 
+import com.tour.events.domain.dto.EventSaveDto;
 import com.tour.events.domain.dto.TicketDto;
+import com.tour.events.domain.service.EventDtoService;
 import com.tour.events.domain.service.TicketDtoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,9 @@ import java.util.Optional;
 public class TicketDtoController {
     @Autowired
     private TicketDtoService ticketDtoSrv;
+
+    @Autowired
+    private EventDtoService eventDtoService;
 
     @GetMapping()
     public List<TicketDto> getAll(){
@@ -27,5 +32,11 @@ public class TicketDtoController {
     @PostMapping()
     public TicketDto save(@RequestBody TicketDto ticketDto){
         return ticketDtoSrv.save(ticketDto);
+    }
+
+    @PostMapping("/{id}/cancel")
+    public void cancelTicket(@PathVariable("id") Integer ticketDtoID){
+        ticketDtoSrv.cancelTicket(ticketDtoID);
+//        EventSaveDto updatedEvent = eventDtoService.updateEvent();
     }
 }
