@@ -3,6 +3,7 @@ package com.tour.events.infraestructure;
 import com.sun.tools.jconsole.JConsoleContext;
 import com.tour.events.domain.dto.TicketDto;
 import com.tour.events.domain.repository.TicketDtoRepository;
+import com.tour.events.infraestructure.entities.Event;
 import com.tour.events.infraestructure.entities.Ticket;
 import com.tour.events.infraestructure.mapper.TicketMapper;
 import com.tour.events.infraestructure.repositories.TicketCrudRepository;
