@@ -4,11 +4,16 @@ import com.tour.events.domain.dto.EventSaveDto;
 import com.tour.events.domain.dto.TicketDto;
 import com.tour.events.domain.service.EventDtoService;
 import com.tour.events.domain.service.TicketDtoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/tickets")
@@ -30,9 +35,15 @@ public class TicketDtoController {
     }
 
     @PostMapping()
-    public TicketDto save(@RequestBody TicketDto ticketDto){
-        return ticketDtoSrv.save(ticketDto);
+    public ResponseEntity<?> save(@Validated @RequestBody TicketDto ticketDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = new HashMap<>();
+            bindingResult.getFieldErrors().forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
+            return ResponseEntity.badRequest().body(errors);
+        }
+        return ResponseEntity.ok(ticketDtoSrv.save(ticketDto));
     }
+
 
     @PostMapping("/{id}/cancel")
     public void cancelTicket(@PathVariable("id") Integer ticketDtoID){

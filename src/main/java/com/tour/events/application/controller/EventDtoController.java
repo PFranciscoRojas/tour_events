@@ -6,9 +6,13 @@ import com.tour.events.domain.service.EventDtoService;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -38,8 +42,13 @@ public class EventDtoController {
     }
 
     @PostMapping()
-    public EventSaveDto save(@RequestBody EventSaveDto eventSaveDto){
-        return eventDtoService.save(eventSaveDto);
+    public ResponseEntity<?> save(@Validated @RequestBody EventSaveDto eventSaveDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = new HashMap<>();
+            bindingResult.getFieldErrors().forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
+            return ResponseEntity.badRequest().body(errors);
+        }
+        return ResponseEntity.ok(eventDtoService.save(eventSaveDto));
     }
     @GetMapping("/{id}/availability")
     public ResponseEntity<Integer> getEventAvailability(@PathVariable("id") int eventId) {

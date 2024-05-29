@@ -1,15 +1,33 @@
 package com.tour.events.domain.dto;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+
 import java.util.Date;
 import java.util.List;
+
 
 public class EventDto {
 
     private int idDto;
+    @NotBlank(message = "El nombre no puede estar en blanco")
     private String nameDto;
+
+    @NotBlank(message = "La ubicación no puede estar en blanco")
     private String locationDto;
+
+    @NotNull(message = "La fecha de inicio no puede ser nula")
+    @Future(message = "La fecha de inicio debe ser en el futuro")
     private Date startDto;
+
+    @NotNull(message = "La fecha de finalización no puede ser nula")
+    @Future(message = "La fecha de finalización debe ser en el futuro")
     private Date finishDto;
+
+    @NotNull(message = "La disponibilidad no puede ser nula")
+    @PositiveOrZero(message = "La disponibilidad debe ser un número positivo o cero")
     private Integer availabilityDto;
 
     private List<TicketDto> tickets;
