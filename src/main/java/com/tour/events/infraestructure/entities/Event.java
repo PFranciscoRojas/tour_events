@@ -1,7 +1,12 @@
 package com.tour.events.infraestructure.entities;
 
 import jakarta.persistence.*;
+
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "event")
@@ -18,13 +23,16 @@ public class Event {
     private Integer ageRestriction;
     private Integer capacity;
     private Integer availability;
-    private String type;
+    private String type;//tipo de evento (concierto, Feria)
     private String city;
     private String address;
     @Column(name = "created_at")
-    private Date createdAt;
+    private Timestamp createdAt;
     @Column(name = "updated_at")
-    private Date updatedAt;
+    private Timestamp updatedAt;
+
+    @OneToMany(mappedBy = "event")
+    private List<Ticket> tickets;
 
     // Getters y setters
 
@@ -124,19 +132,31 @@ public class Event {
         this.address = address;
     }
 
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+
+    @PrePersist
+    protected void onCreate() {
+        availability = capacity;
+        createdAt = new Timestamp(System.currentTimeMillis());
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Timestamp(System.currentTimeMillis());
     }
 }

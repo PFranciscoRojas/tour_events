@@ -1,0 +1,21 @@
+{
+  "statusDto": true,
+  "typeDto": "VIP",
+  "priceDto": 150000,
+  "numberDto": 1,
+  "presaleDto": false,
+  "eventSaveDto": {
+    "idDto": 6,
+    "nameDto": "Feria artesanal2",
+    "descriptionDto": "Esta es una feria que se celebra cada año2",
+    "locationDto": "Estadio Libertad2",
+    "startDto": "2024-04-28",
+    "finishDto": "2024-04-28",
+    "ageRestrictionDto": 0,
+    "capacityDto": 300,
+    "availabilityDto": 300,
+    "typeDto": "cultural",
+    "cityDto": "Pasto",
+    "addressDto": "La dirección del estadio"
+    }
+}
